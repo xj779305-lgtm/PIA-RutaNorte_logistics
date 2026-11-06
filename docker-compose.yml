@@ -1,0 +1,38 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-rutanorte}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?define POSTGRES_PASSWORD en .env}
+      POSTGRES_DB: ${POSTGRES_DB:-rutanorte}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-rutanorte}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  app:
+    build: .
+    env_file: .env
+    ports:
+      - "8000:8000"
+    volumes:
+      - evidencias:/data/evidencias
+    depends_on:
+      db:
+        condition: service_healthy
+
+  tests:
+    build: .
+    profiles: ["tests"]
+    env_file: .env
+    command: python -m pytest -v --cov=src --cov-report=term-missing --cov-fail-under=80
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  pgdata:
+  evidencias:

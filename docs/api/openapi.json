@@ -1,0 +1,1350 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "RutaNorte Logistics API",
+    "description": "Cotizacion, recoleccion, traslado y entrega de mercancia (PIA CLN).",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/health": {
+      "get": {
+        "tags": [
+          "sistema"
+        ],
+        "summary": "Health",
+        "operationId": "health_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/unidades": {
+      "post": {
+        "tags": [
+          "recursos"
+        ],
+        "summary": "Crear Unidad",
+        "operationId": "crear_unidad_unidades_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NuevaUnidad"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/operadores": {
+      "post": {
+        "tags": [
+          "recursos"
+        ],
+        "summary": "Crear Operador",
+        "operationId": "crear_operador_operadores_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NuevoOperador"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cotizaciones": {
+      "post": {
+        "tags": [
+          "cotizaciones"
+        ],
+        "summary": "Solicitar",
+        "operationId": "solicitar_cotizaciones_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SolicitudDeCotizacion"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cotizaciones/{folio}/cotizar": {
+      "post": {
+        "tags": [
+          "cotizaciones"
+        ],
+        "summary": "Cotizar",
+        "operationId": "cotizar_cotizaciones__folio__cotizar_post",
+        "parameters": [
+          {
+            "name": "folio",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Folio"
+            }
+          },
+          {
+            "name": "X-Rol",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "X-Rol"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cotizaciones/{folio}/aceptar": {
+      "post": {
+        "tags": [
+          "cotizaciones"
+        ],
+        "summary": "Aceptar",
+        "operationId": "aceptar_cotizaciones__folio__aceptar_post",
+        "parameters": [
+          {
+            "name": "folio",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Folio"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cotizaciones/{folio}/rechazar": {
+      "post": {
+        "tags": [
+          "cotizaciones"
+        ],
+        "summary": "Rechazar",
+        "operationId": "rechazar_cotizaciones__folio__rechazar_post",
+        "parameters": [
+          {
+            "name": "folio",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Folio"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ordenes": {
+      "post": {
+        "tags": [
+          "ordenes"
+        ],
+        "summary": "Generar Orden",
+        "operationId": "generar_orden_ordenes_post",
+        "parameters": [
+          {
+            "name": "X-Rol",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "X-Rol"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GenerarOrden"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ordenes/{numero}": {
+      "get": {
+        "tags": [
+          "seguimiento"
+        ],
+        "summary": "Consultar",
+        "operationId": "consultar_ordenes__numero__get",
+        "parameters": [
+          {
+            "name": "numero",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Numero"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ordenes/{numero}/recoleccion": {
+      "post": {
+        "tags": [
+          "ordenes"
+        ],
+        "summary": "Recolectar",
+        "operationId": "recolectar_ordenes__numero__recoleccion_post",
+        "parameters": [
+          {
+            "name": "numero",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Numero"
+            }
+          },
+          {
+            "name": "X-Responsable",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "operador",
+              "title": "X-Responsable"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Recoleccion"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ordenes/{numero}/rechazo": {
+      "post": {
+        "tags": [
+          "ordenes"
+        ],
+        "summary": "Rechazar Mercancia",
+        "operationId": "rechazar_mercancia_ordenes__numero__rechazo_post",
+        "parameters": [
+          {
+            "name": "numero",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Numero"
+            }
+          },
+          {
+            "name": "X-Responsable",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "operador",
+              "title": "X-Responsable"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RechazoDeMercancia"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ordenes/{numero}/traslado": {
+      "post": {
+        "tags": [
+          "ordenes"
+        ],
+        "summary": "Traslado",
+        "operationId": "traslado_ordenes__numero__traslado_post",
+        "parameters": [
+          {
+            "name": "numero",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Numero"
+            }
+          },
+          {
+            "name": "X-Responsable",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "operador",
+              "title": "X-Responsable"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ordenes/{numero}/averia": {
+      "post": {
+        "tags": [
+          "ordenes"
+        ],
+        "summary": "Averia",
+        "operationId": "averia_ordenes__numero__averia_post",
+        "parameters": [
+          {
+            "name": "numero",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Numero"
+            }
+          },
+          {
+            "name": "X-Responsable",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "operador",
+              "title": "X-Responsable"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Averia"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ordenes/{numero}/reasignar-operador": {
+      "post": {
+        "tags": [
+          "ordenes"
+        ],
+        "summary": "Reasignar",
+        "operationId": "reasignar_ordenes__numero__reasignar_operador_post",
+        "parameters": [
+          {
+            "name": "numero",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Numero"
+            }
+          },
+          {
+            "name": "X-Rol",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "X-Rol"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Reasignacion"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ordenes/{numero}/llegada": {
+      "post": {
+        "tags": [
+          "ordenes"
+        ],
+        "summary": "Llegada",
+        "operationId": "llegada_ordenes__numero__llegada_post",
+        "parameters": [
+          {
+            "name": "numero",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Numero"
+            }
+          },
+          {
+            "name": "X-Responsable",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "operador",
+              "title": "X-Responsable"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ordenes/{numero}/entrega": {
+      "post": {
+        "tags": [
+          "ordenes"
+        ],
+        "summary": "Entrega",
+        "operationId": "entrega_ordenes__numero__entrega_post",
+        "parameters": [
+          {
+            "name": "numero",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Numero"
+            }
+          },
+          {
+            "name": "X-Responsable",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "operador",
+              "title": "X-Responsable"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Entrega"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ordenes/{numero}/destinatario-ausente": {
+      "post": {
+        "tags": [
+          "ordenes"
+        ],
+        "summary": "Destinatario Ausente",
+        "operationId": "destinatario_ausente_ordenes__numero__destinatario_ausente_post",
+        "parameters": [
+          {
+            "name": "numero",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Numero"
+            }
+          },
+          {
+            "name": "X-Responsable",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "operador",
+              "title": "X-Responsable"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DestinatarioAusente"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ordenes/{numero}/entrega-con-anomalias": {
+      "post": {
+        "tags": [
+          "ordenes"
+        ],
+        "summary": "Entrega Con Anomalias",
+        "operationId": "entrega_con_anomalias_ordenes__numero__entrega_con_anomalias_post",
+        "parameters": [
+          {
+            "name": "numero",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Numero"
+            }
+          },
+          {
+            "name": "X-Responsable",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "operador",
+              "title": "X-Responsable"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EntregaConAnomalias"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Averia": {
+        "properties": {
+          "descripcion": {
+            "type": "string",
+            "title": "Descripcion"
+          }
+        },
+        "type": "object",
+        "required": [
+          "descripcion"
+        ],
+        "title": "Averia"
+      },
+      "DestinatarioAusente": {
+        "properties": {
+          "foto_base64": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Foto Base64"
+          },
+          "latitud": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Latitud"
+          },
+          "longitud": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Longitud"
+          },
+          "observaciones": {
+            "type": "string",
+            "title": "Observaciones",
+            "default": ""
+          }
+        },
+        "type": "object",
+        "title": "DestinatarioAusente"
+      },
+      "Entrega": {
+        "properties": {
+          "receptor_nombre": {
+            "type": "string",
+            "title": "Receptor Nombre",
+            "default": ""
+          },
+          "receptor_identificacion": {
+            "type": "string",
+            "title": "Receptor Identificacion",
+            "default": ""
+          },
+          "foto_base64": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Foto Base64"
+          },
+          "firma_base64": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Firma Base64"
+          },
+          "latitud": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Latitud"
+          },
+          "longitud": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Longitud"
+          }
+        },
+        "type": "object",
+        "title": "Entrega"
+      },
+      "EntregaConAnomalias": {
+        "properties": {
+          "receptor_nombre": {
+            "type": "string",
+            "title": "Receptor Nombre",
+            "default": ""
+          },
+          "receptor_identificacion": {
+            "type": "string",
+            "title": "Receptor Identificacion",
+            "default": ""
+          },
+          "foto_base64": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Foto Base64"
+          },
+          "firma_base64": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Firma Base64"
+          },
+          "latitud": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Latitud"
+          },
+          "longitud": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Longitud"
+          },
+          "descripcion": {
+            "type": "string",
+            "title": "Descripcion",
+            "default": "",
+            "examples": [
+              "Dos piezas rotas"
+            ]
+          },
+          "fotos_anomalia_base64": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Fotos Anomalia Base64",
+            "default": []
+          }
+        },
+        "type": "object",
+        "title": "EntregaConAnomalias"
+      },
+      "GenerarOrden": {
+        "properties": {
+          "numero": {
+            "type": "string",
+            "title": "Numero",
+            "examples": [
+              "OS-500"
+            ]
+          },
+          "folio_cotizacion": {
+            "type": "string",
+            "title": "Folio Cotizacion"
+          },
+          "unidad_id": {
+            "type": "string",
+            "title": "Unidad Id"
+          },
+          "operador_id": {
+            "type": "string",
+            "title": "Operador Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "numero",
+          "folio_cotizacion",
+          "unidad_id",
+          "operador_id"
+        ],
+        "title": "GenerarOrden"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "NuevaUnidad": {
+        "properties": {
+          "codigo": {
+            "type": "string",
+            "title": "Codigo",
+            "examples": [
+              "Eco-12"
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "codigo"
+        ],
+        "title": "NuevaUnidad"
+      },
+      "NuevoOperador": {
+        "properties": {
+          "identificador": {
+            "type": "string",
+            "title": "Identificador",
+            "examples": [
+              "OP-01"
+            ]
+          },
+          "es_comodin": {
+            "type": "boolean",
+            "title": "Es Comodin",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "identificador"
+        ],
+        "title": "NuevoOperador"
+      },
+      "Reasignacion": {
+        "properties": {
+          "nuevo_operador_id": {
+            "type": "string",
+            "title": "Nuevo Operador Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "nuevo_operador_id"
+        ],
+        "title": "Reasignacion"
+      },
+      "RechazoDeMercancia": {
+        "properties": {
+          "tipo_discrepancia": {
+            "$ref": "#/components/schemas/TipoDeDiscrepancia"
+          },
+          "fotos_base64": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Fotos Base64",
+            "default": []
+          },
+          "observaciones": {
+            "type": "string",
+            "title": "Observaciones",
+            "default": ""
+          }
+        },
+        "type": "object",
+        "required": [
+          "tipo_discrepancia"
+        ],
+        "title": "RechazoDeMercancia"
+      },
+      "Recoleccion": {
+        "properties": {
+          "tipo_inspeccionado": {
+            "type": "string",
+            "title": "Tipo Inspeccionado"
+          },
+          "peso_inspeccionado": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "title": "Peso Inspeccionado"
+          },
+          "controles_confirmados": {
+            "type": "boolean",
+            "title": "Controles Confirmados",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "tipo_inspeccionado",
+          "peso_inspeccionado"
+        ],
+        "title": "Recoleccion"
+      },
+      "SolicitudDeCotizacion": {
+        "properties": {
+          "origen": {
+            "type": "string",
+            "title": "Origen",
+            "examples": [
+              "Monterrey"
+            ]
+          },
+          "destino": {
+            "type": "string",
+            "title": "Destino",
+            "examples": [
+              "Querétaro"
+            ]
+          },
+          "tipo_mercancia": {
+            "type": "string",
+            "title": "Tipo Mercancia",
+            "examples": [
+              "autopartes"
+            ]
+          },
+          "peso_kg": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "title": "Peso Kg",
+            "examples": [
+              "1500"
+            ]
+          },
+          "valor": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              }
+            ],
+            "title": "Valor",
+            "examples": [
+              "80000"
+            ]
+          },
+          "tipo_de_unidad": {
+            "type": "string",
+            "title": "Tipo De Unidad",
+            "examples": [
+              "caja seca"
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "origen",
+          "destino",
+          "tipo_mercancia",
+          "peso_kg",
+          "valor",
+          "tipo_de_unidad"
+        ],
+        "title": "SolicitudDeCotizacion"
+      },
+      "TipoDeDiscrepancia": {
+        "type": "string",
+        "enum": [
+          "cantidad",
+          "tipo",
+          "estado"
+        ],
+        "title": "TipoDeDiscrepancia",
+        "description": "G-13: cantidad, tipo o estado."
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}

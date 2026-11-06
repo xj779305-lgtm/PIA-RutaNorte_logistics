@@ -1,0 +1,43 @@
+"""Puertos (interfaces) que la infraestructura implementa (ADR-03, ADR-05)."""
+
+from __future__ import annotations
+
+from typing import Protocol
+
+from src.domain.model import Cotizacion, Operador, OrdenDeServicio, Unidad
+
+
+class OrdenDeServicioRepository(Protocol):
+    def obtener_por_numero(self, numero: str) -> OrdenDeServicio: ...
+    def guardar(self, orden: OrdenDeServicio) -> None: ...
+
+
+class CotizacionRepository(Protocol):
+    def obtener_por_folio(self, folio: str) -> Cotizacion: ...
+    def guardar(self, cotizacion: Cotizacion) -> None: ...
+
+
+class UnidadRepository(Protocol):
+    def obtener_por_id(self, codigo: str) -> Unidad: ...
+    def guardar(self, unidad: Unidad) -> None: ...
+
+
+class OperadorRepository(Protocol):
+    def obtener_por_id(self, identificador: str) -> Operador: ...
+    def guardar(self, operador: Operador) -> None: ...
+
+
+class IUnidadDeTrabajo(Protocol):
+    def iniciar(self) -> None: ...
+    def confirmar(self) -> None: ...
+    def revertir(self) -> None: ...
+
+
+class IAlmacenDeEvidencias(Protocol):
+    def guardar(self, contenido: bytes) -> str:
+        """Guarda un archivo (foto o firma) y devuelve su referencia."""
+        ...
+
+
+class INotificador(Protocol):
+    def alertar(self, destino: str, numero_orden: str, mensaje: str) -> None: ...
