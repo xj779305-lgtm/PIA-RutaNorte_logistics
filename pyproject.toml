@@ -8,7 +8,7 @@ omit = ["src/api/__main__.py"]
 
 [tool.ruff]
 line-length = 150
-target-version = "py312"
+target-version = "py313"
 
 [tool.ruff.lint]
 select = ["E", "F", "I"]
